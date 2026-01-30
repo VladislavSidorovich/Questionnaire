@@ -3,117 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анкета оператора | Компания по продаже участков</title>
+    <title>Анкета оператора - Удалённая работа</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
             line-height: 1.6;
             padding: 20px;
-            background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef );
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            border: 1px solid #e1e5eb;
         }
 
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #4a6572);
+        header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             color: white;
             padding: 30px;
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 1.8rem;
+        header h1 {
+            font-size: 28px;
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
-        .header h1 i {
-            font-size: 2rem;
-        }
-
-        .header p {
+        header p {
+            font-size: 16px;
             opacity: 0.9;
-            font-size: 1rem;
-            max-width: 700px;
-            margin: 10px auto 0;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .disclaimer {
-            background-color: #fff8e1;
-            border-left: 5px solid #ffc107;
-            padding: 15px 20px;
-            margin: 20px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: #856404;
+        .form-container {
+            padding: 30px;
         }
 
-        .disclaimer i {
-            margin-right: 10px;
-            color: #ff9800;
-        }
-
-        .form-section {
-            padding: 25px 30px;
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 25px;
             border-bottom: 1px solid #eee;
         }
 
-        .form-section:last-of-type {
+        .section:last-of-type {
             border-bottom: none;
         }
 
-        .question-title {
-            font-size: 1.3rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .question-number {
-            background-color: #3498db;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
+        .section-title {
+            color: #2a5298;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f4ff;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
         }
 
-        .question-hint {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            font-style: italic;
-            margin-top: -10px;
-            margin-bottom: 15px;
-            padding-left: 38px;
+        .section-title i {
+            margin-right: 10px;
+            font-size: 20px;
         }
 
-        .input-group {
+        .form-group {
             margin-bottom: 20px;
         }
 
@@ -121,170 +86,146 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #34495e;
+            color: #444;
         }
 
         input[type="text"],
         input[type="tel"],
         input[type="number"],
-        textarea,
-        select {
+        select,
+        textarea {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #ddd;
+            padding: 12px 15px;
+            border: 2px solid #e1e5ee;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             transition: all 0.3s;
         }
 
         input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        select:focus,
+        textarea:focus {
+            border-color: #2a5298;
             outline: none;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-            font-family: inherit;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
         }
 
         .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .checkbox-label {
+        .checkbox-item {
+            flex: 1 0 200px;
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e1e5ee;
             display: flex;
             align-items: center;
-            font-weight: normal;
             cursor: pointer;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: background 0.2s;
+            transition: all 0.3s;
         }
 
-        .checkbox-label:hover {
-            background: #e9ecef;
+        .checkbox-item:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
         }
 
-        .checkbox-label input {
+        .checkbox-item input {
             margin-right: 10px;
-            transform: scale(1.2);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
 
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .radio-label {
+        .radio-item {
             display: flex;
             align-items: center;
-            font-weight: normal;
+            padding: 10px 0;
             cursor: pointer;
         }
 
-        .radio-label input {
+        .radio-item input {
             margin-right: 10px;
-            transform: scale(1.2);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
         }
 
-        .scale-container {
+        .rating {
             display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .rating input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .explanation {
             margin-top: 10px;
         }
 
-        .scale-number {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .scale-number input {
-            display: none;
-        }
-
-        .scale-dot {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #ecf0f1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-        }
-
-        .scale-number input:checked + .scale-dot {
-            background-color: #2ecc71;
-            color: white;
-            border-color: #27ae60;
-            transform: scale(1.1);
-        }
-
-        .scale-number:hover .scale-dot {
-            background-color: #d5dbdb;
-        }
-
-        .button-container {
+        .submit-section {
             text-align: center;
-            padding: 30px;
-            background-color: #f8f9fa;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            margin-top: 30px;
         }
 
         .submit-btn {
-            background: linear-gradient(to right, #2980b9, #3498db);
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             color: white;
             border: none;
-            padding: 18px 45px;
-            font-size: 1.1rem;
+            padding: 16px 40px;
+            font-size: 18px;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(41, 128, 185, 0.4);
-            background: linear-gradient(to right, #2573a7, #2980b9);
+            box-shadow: 0 7px 15px rgba(42, 82, 152, 0.3);
         }
 
         .submit-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
 
-        .submit-btn:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
         }
 
-        #formMessage {
-            margin-top: 20px;
+        .required {
+            color: #e74c3c;
+        }
+
+        .notification {
             padding: 15px;
             border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
+            margin-bottom: 20px;
             display: none;
+            text-align: center;
         }
 
         .success {
@@ -299,350 +240,383 @@
             border: 1px solid #f5c6cb;
         }
 
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-            margin-top: 20px;
-        }
-
         @media (max-width: 768px) {
             .container {
-                margin: 10px auto;
                 border-radius: 10px;
             }
-            .header, .form-section {
+            
+            .form-container {
                 padding: 20px;
             }
-            .checkbox-group {
-                grid-template-columns: 1fr;
+            
+            .checkbox-item {
+                flex: 1 0 100%;
             }
-            .scale-container {
-                justify-content: space-between;
+            
+            .section-title {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-file-alt"></i> Анкета оператора колл-центра</h1>
-            <p>Мы — официальная компания, занимаемся продажей земельных участков и готовых домов.  
+        <header>
+            <h1><i class="fas fa-user-tie"></i> Анкета оператора колл-центра</h1>
+            <p>Официальная компания по продаже земельных участков и готовых домов. Работа оператора — квалификация входящих и холодных лидов и запись на следующий шаг по скрипту. Формат работы: удалённо.</p>
+            <p style="margin-top: 15px; font-size: 14px; font-style: italic;">Пожалуйста, ответьте на все вопросы максимально честно и подробно. Ваши ответы важны для дальнейшего отбора.</p>
+        </header>
 
-            Работа оператора — квалификация входящих и холодных лидов и запись на следующий шаг по скрипту. Формат работы: удалённо.</p>
-        </div>
-
-        <div class="disclaimer">
-            <p><i class="fas fa-exclamation-circle"></i> <strong>Пожалуйста, отвечайте честно.</strong> Некоторые вопросы требуют вдумчивого ответа — это важно для дальнейшего отбора.</p>
-        </div>
-
-        <form id="applicationForm">
-            <!-- Вопрос 1: Контактные данные -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">1</div>
-                    <div>Контактные данные</div>
-                </div>
-                <p class="question-hint">Фамилия, имя, номер телефона, город проживания, часовой пояс</p>
-                
-                <div class="input-group">
-                    <label for="fullName">Фамилия и Имя *</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Иванов Иван" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="phone">Номер телефона *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="city">Город проживания *</label>
-                    <input type="text" id="city" name="city" placeholder="Москва" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="timezone">Часовой пояс (например, МСК+2) *</label>
-                    <input type="text" id="timezone" name="timezone" placeholder="МСК" required>
-                </div>
-            </div>
-
-            <!-- Вопрос 2: Условия для удалённой работы -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">2</div>
-                    <div>Есть ли у вас условия для удалённой работы?</div>
-                </div>
-                <p class="question-hint">Отметьте всё, что есть:</p>
-                
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="equipment" value="компьютер / ноутбук">
-                        <span>Компьютер / ноутбук</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="equipment" value="наушники с микрофоном">
-                        <span>Наушники с микрофоном</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="equipment" value="стабильный интернет">
-                        <span>Стабильный интернет</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="equipment" value="тихое рабочее место">
-                        <span>Тихое рабочее место</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Вопрос 3: Опыт работы в колл-центре -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">3</div>
-                    <div>Сколько лет у вас опыта работы в колл-центре?</div>
-                </div>
-                <p class="question-hint">Выберите наиболее подходящий вариант.</p>
-                
-                <div class="input-group">
-                    <label for="callCenterExperience">Ваш опыт *</label>
-                    <select id="callCenterExperience" name="callCenterExperience" required>
-                        <option value="" disabled selected>-- Выберите опыт --</option>
-                        <option value="Менее 1 года">Менее 1 года</option>
-                        <option value="1 год">1 год</option>
-                        <option value="2 года">2 года</option>
-                        <option value="3 года">3 года</option>
-                        <option value="4 года">4 года</option>
-                        <option value="5 лет и более">5 лет и более</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Вопрос 4: Опыт холодных звонков -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">4</div>
-                    <div>Был ли у вас опыт работы с холодными звонками?</div>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="coldCalls" value="Да, регулярно" required>
-                        <span>Да, регулярно</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="coldCalls" value="Был частично">
-                        <span>Был частично</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="coldCalls" value="Нет">
-                        <span>Нет</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Вопрос 5: Самооценка (бывший 7) -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">5</div>
-                    <div>Как вы оцениваете свою работу оператором по 10-балльной шкале?</div>
-                </div>
-                <p class="question-hint">И коротко объясните почему.</p>
-                
-                <div class="input-group">
-                    <label>Оценка (от 1 до 10) *</label>
-                    <div class="scale-container">
-                        <!-- Баллы от 1 до 10 будут сгенерированы JS -->
+        <div class="form-container">
+            <div class="notification" id="notification"></div>
+            
+            <form id="anketaForm">
+                <!-- Секция 1: Контактные данные -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-address-card"></i> 1. Контактные данные</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Фамилия и Имя <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Иванов Иван">
                     </div>
-                    <input type="hidden" id="selfRating" name="selfRating" required>
+                    
+                    <div class="form-group">
+                        <label for="phone">Номер телефона <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city">Город проживания <span class="required">*</span></label>
+                        <input type="text" id="city" name="city" required placeholder="Москва">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timezone">Часовой пояс (относительно МСК) <span class="required">*</span></label>
+                        <select id="timezone" name="timezone" required>
+                            <option value="" disabled selected>Выберите ваш часовой пояс</option>
+                            <option value="MSK-2">MSK-2 (Калининград)</option>
+                            <option value="MSK-1">MSK-1</option>
+                            <option value="MSK">MSK (Московское время)</option>
+                            <option value="MSK+1">MSK+1 (Самара)</option>
+                            <option value="MSK+2">MSK+2 (Екатеринбург)</option>
+                            <option value="MSK+3">MSK+3 (Омск)</option>
+                            <option value="MSK+4">MSK+4 (Красноярск)</option>
+                            <option value="MSK+5">MSK+5 (Иркутск)</option>
+                            <option value="MSK+6">MSK+6 (Якутск)</option>
+                            <option value="MSK+7">MSK+7 (Владивосток)</option>
+                            <option value="MSK+8">MSK+8 (Магадан)</option>
+                            <option value="MSK+9">MSK+9 (Камчатка)</option>
+                        </select>
+                    </div>
                 </div>
-                
-                <div class="input-group">
-                    <label for="ratingReason">Краткое объяснение вашей оценки *</label>
-                    <textarea id="ratingReason" name="ratingReason" placeholder="Почему вы поставили себе такую оценку?" required></textarea>
-                </div>
-            </div>
 
-            <!-- Вопрос 6: Отношение к 8-часовому дню (бывший 8) -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">6</div>
-                    <div>Как вы относитесь к 8-часовому рабочему дню в формате звонков?</div>
+                <!-- Секция 2: Условия для удалённой работы -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-laptop-house"></i> 2. Условия для удалённой работы</h2>
+                    <p>Отметьте всё, что у вас есть:</p>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="computer" name="conditions" value="Компьютер/ноутбук">
+                            <label for="computer">Компьютер / ноутбук</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="headphones" name="conditions" value="Наушники с микрофоном">
+                            <label for="headphones">Наушники с микрофоном</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="internet" name="conditions" value="Стабильный интернет">
+                            <label for="internet">Стабильный интернет</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="workplace" name="conditions" value="Тихое рабочее место">
+                            <label for="workplace">Тихое рабочее место</label>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Спокойно, это нормальный рабочий ритм" required>
-                        <span>Спокойно, это нормальный рабочий ритм</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Готов(а), если есть понятная задача и система">
-                        <span>Готов(а), если есть понятная задача и система</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Тяжело выдерживать такой формат">
-                        <span>Тяжело выдерживать такой формат</span>
-                    </label>
-                </div>
-            </div>
 
-            <!-- Вопрос 7: Сложности в работе (бывший 9) -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">7</div>
-                    <div>Что для вас самое сложное в работе оператора?</div>
+                <!-- Секция 3: Опыт работы -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-briefcase"></i> 3. Сколько лет у вас опыта работы в колл-центре?</h2>
+                    
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="exp0" name="experience" value="Менее 1 года" required>
+                            <label for="exp0">Менее 1 года</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="exp1" name="experience" value="1 год">
+                            <label for="exp1">1 год</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="exp2" name="experience" value="2 года">
+                            <label for="exp2">2 года</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="exp3" name="experience" value="3 года">
+                            <label for="exp3">3 года</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="exp4" name="experience" value="4 года">
+                            <label for="exp4">4 года</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="exp5" name="experience" value="5 лет и более">
+                            <label for="exp5">5 лет и более</label>
+                        </div>
+                    </div>
                 </div>
-                <p class="question-hint">Опишите, что вызывает наибольшие трудности.</p>
-                
-                <div class="input-group">
-                    <label for="difficulties">Ваш ответ *</label>
-                    <textarea id="difficulties" name="difficulties" placeholder="Например: работа с негативными клиентами, монотонность..." required></textarea>
-                </div>
-            </div>
 
-            <!-- Вопрос 8: Ожидания по ЗП (новый) -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">8</div>
-                    <div>Ваши ожидания по заработной плате?</div>
+                <!-- Секция 4: Опыт холодных звонков -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-phone-volume"></i> 4. Был ли у вас опыт работы с холодными звонками?</h2>
+                    
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="cold1" name="coldCalls" value="Да, регулярно" required>
+                            <label for="cold1">Да, регулярно</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="cold2" name="coldCalls" value="Был частично">
+                            <label for="cold2">Был частично</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="cold3" name="coldCalls" value="Нет">
+                            <label for="cold3">Нет</label>
+                        </div>
+                    </div>
                 </div>
-                <p class="question-hint">Укажите желаемый уровень дохода в месяц (в рублях).</p>
-                
-                <div class="input-group">
-                    <label for="salaryExpectation">Сумма в рублях *</label>
-                    <input type="text" id="salaryExpectation" name="salaryExpectation" placeholder="Например: 50000 рублей" required>
-                </div>
-            </div>
 
-            <!-- Вопрос 9: Срочность поиска работы (новый) -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">9</div>
-                    <div>Насколько срочно вам нужна работа?</div>
+                <!-- Секция 5: Оценка своей работы -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-chart-line"></i> 5. Как вы оцениваете свою работу оператором по 10-балльной шкале?</h2>
+                    
+                    <div class="form-group">
+                        <label for="rating">Ваша оценка (от 1 до 10) <span class="required">*</span></label>
+                        <div class="rating">
+                            <input type="number" id="rating" name="rating" min="1" max="10" required>
+                            <span>/10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ratingExplanation">Кратко объясните, почему вы поставили себе такую оценку:</label>
+                        <textarea id="ratingExplanation" name="ratingExplanation" rows="3" placeholder="Например: имею хорошие навыки общения, быстро обучаюсь, но пока мало опыта в продажах..."></textarea>
+                    </div>
                 </div>
-                <p class="question-hint">Выберите один из вариантов.</p>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Готов приступить в ближайшие дни" required>
-                        <span>Готов(а) приступить в ближайшие дни</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Нужно отработать 2 недели">
-                        <span>Нужно отработать 2 недели на текущем месте</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Рассматриваю предложения, но не спешу">
-                        <span>Рассматриваю предложения, но не спешу</span>
-                    </label>
+
+                <!-- Секция 6: Отношение к 8-часовому рабочему дню -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-clock"></i> 6. Как вы относитесь к 8-часовому рабочему дню в формате звонков?</h2>
+                    
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="day1" name="workday" value="Спокойно, это нормальный рабочий ритм" required>
+                            <label for="day1">Спокойно, это нормальный рабочий ритм</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="day2" name="workday" value="Готов(а), если есть понятная задача и система">
+                            <label for="day2">Готов(а), если есть понятная задача и система</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="day3" name="workday" value="Тяжело выдерживать такой формат">
+                            <label for="day3">Тяжело выдерживать такой формат</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Кнопка отправки и сообщение -->
-            <div class="button-container">
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Отправить анкету
-                </button>
-                
-                <div id="formMessage"></div>
-            </div>
-        </form>
+                <!-- Секция 7: Самое сложное в работе -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> 7. Что для вас самое сложное в работе оператора?</h2>
+                    
+                    <div class="form-group">
+                        <textarea id="hardestPart" name="hardestPart" rows="3" placeholder="Например: работа с возражениями клиентов, поддержание мотивации в течение дня..."></textarea>
+                    </div>
+                </div>
 
-        <div class="footer">
-            <p>© 2023 Анкета для отбора операторов. Все данные конфиденциальны.</p>
+                <!-- Секция 8: Ожидания по зарплате -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-money-bill-wave"></i> 8. Ваши ожидания по заработной плате?</h2>
+                    <p>Укажите желаемый уровень дохода в месяц, в рублях</p>
+                    
+                    <div class="form-group">
+                        <input type="number" id="salary" name="salary" required placeholder="Например: 50000">
+                        <span>рублей в месяц</span>
+                    </div>
+                </div>
+
+                <!-- Секция 9: Срочность трудоустройства -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-calendar-alt"></i> 9. Насколько срочно вам нужна работа?</h2>
+                    
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="urgency1" name="urgency" value="Готов(а) приступить в ближайшие дни" required>
+                            <label for="urgency1">Готов(а) приступить в ближайшие дни</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="urgency2" name="urgency" value="Нужно отработать 2 недели на текущем месте">
+                            <label for="urgency2">Нужно отработать 2 недели на текущем месте</label>
+                        </div>
+                        
+                        <div class="radio-item">
+                            <input type="radio" id="urgency3" name="urgency" value="Рассматриваю предложения, но не спешу">
+                            <label for="urgency3">Рассматриваю предложения, но не спешу</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Дата и подпись -->
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-file-signature"></i> Завершение анкеты</h2>
+                    
+                    <div class="form-group">
+                        <label for="date">Дата заполнения <span class="required">*</span></label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signature">Подпись (ФИО) <span class="required">*</span></label>
+                        <input type="text" id="signature" name="signature" required placeholder="Иванов Иван Иванович">
+                    </div>
+                </div>
+
+                <!-- Кнопка отправки -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Отправить анкету
+                    </button>
+                    <p style="margin-top: 15px; color: #666; font-size: 14px;">После отправки данные будут сохранены в Google Таблицу, и мы свяжемся с вами в ближайшее время.</p>
+                </div>
+            </form>
         </div>
+
+        <footer>
+            <p>Спасибо за уделенное время! Мы рассмотрим вашу анкету и свяжемся с вами.</p>
+            <p style="margin-top: 10px;">© Официальная компания по продаже земельных участков и готовых домов</p>
+        </footer>
     </div>
 
     <script>
-        // Генерация шкалы оценки от 1 до 10
-        document.addEventListener('DOMContentLoaded', function() {
-            const scaleContainer = document.querySelector('.scale-container');
-            for (let i = 1; i <= 10; i++) {
-                const scaleNumber = document.createElement('div');
-                scaleNumber.className = 'scale-number';
-                
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'rating';
-                input.id = `rating${i}`;
-                input.value = i;
-                
-                const dot = document.createElement('div');
-                dot.className = 'scale-dot';
-                dot.textContent = i;
-                
-                scaleNumber.appendChild(input);
-                scaleNumber.appendChild(dot);
-                scaleContainer.appendChild(scaleNumber);
-                
-                input.addEventListener('change', function() {
-                    document.getElementById('selfRating').value = i;
-                });
-                
-                dot.addEventListener('click', function() {
-                    input.checked = true;
-                    document.getElementById('selfRating').value = i;
-                    const event = new Event('change');
-                    input.dispatchEvent(event);
-                });
-            }
-        });
-
+        // Устанавливаем сегодняшнюю дату по умолчанию
+        document.getElementById('date').valueAsDate = new Date();
+        
         // Обработка отправки формы
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+        document.getElementById('anketaForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Показать индикатор загрузки
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
             
+            // Собрать данные формы
             const formData = new FormData(this);
             
-            const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
-            const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
-            formData.set('equipment', equipmentValues);
-            
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
+            // Собрать отмеченные условия
+            const conditions = [];
+            document.querySelectorAll('input[name="conditions"]:checked').forEach(checkbox => {
+                conditions.push(checkbox.value);
             });
             
-            try {
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
+            // Создать объект данных
+            const data = {
+                fullName: formData.get('fullName'),
+                phone: formData.get('phone'),
+                city: formData.get('city'),
+                timezone: formData.get('timezone'),
+                conditions: conditions.join(', '),
+                experience: formData.get('experience'),
+                coldCalls: formData.get('coldCalls'),
+                rating: formData.get('rating'),
+                ratingExplanation: formData.get('ratingExplanation'),
+                workday: formData.get('workday'),
+                hardestPart: formData.get('hardestPart'),
+                salary: formData.get('salary') + ' руб.',
+                urgency: formData.get('urgency'),
+                date: formData.get('date'),
+                signature: formData.get('signature'),
+                timestamp: new Date().toLocaleString('ru-RU')
+            };
+            
+            // === ВАЖНО: ЗАМЕНИТЕ ЭТУ ССЫЛКУ НА СВОЙ GOOGLE APPS SCRIPT URL ===
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
+            
+            // Отправить данные в Google Apps Script
+            fetch(googleScriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Важно для работы с Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Показать сообщение об успехе
+                showNotification('Ваша анкета успешно отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
                 
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data )
-                });
+                // Очистить форму
+                document.getElementById('anketaForm').reset();
+                document.getElementById('date').valueAsDate = new Date();
                 
-                showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
-                document.getElementById('applicationForm').reset();
-                document.getElementById('selfRating').value = '';
-                
-            } catch (error) {
-                console.error('Ошибка отправки:', error);
-                showMessage('❌ Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами.', 'error');
-            } finally {
+                // В реальном приложении здесь будет перенаправление или очистка формы
+                console.log('Данные анкеты:', data);
+            })
+            .catch(error => {
+                // Показать сообщение об ошибке
+                showNotification('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.', 'error');
+                console.error('Ошибка:', error);
+            })
+            .finally(() => {
+                // Восстановить кнопку
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+            });
+        });
+        
+        // Функция показа уведомлений
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+            notification.style.display = 'block';
+            
+            // Скрыть уведомление через 5 секунд
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Валидация номера телефона
+        document.getElementById('phone').addEventListener('blur', function() {
+            const phone = this.value;
+            const phoneRegex = /^(\+7|8)[\s(]?\d{3}[\s)]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+            
+            if (phone && !phoneRegex.test(phone)) {
+                showNotification('Пожалуйста, введите корректный номер телефона', 'error');
             }
         });
         
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('formMessage');
-            messageDiv.textContent = text;
-            messageDiv.className = type;
-            messageDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 8000);
-        }
+        // Валидация оценки
+        document.getElementById('rating').addEventListener('change', function() {
+            const rating = parseInt(this.value);
+            if (rating < 1) this.value = 1;
+            if (rating > 10) this.value = 10;
+        });
     </script>
 </body>
 </html>
