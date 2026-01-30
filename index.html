@@ -18,7 +18,7 @@
             color: #333;
             line-height: 1.6;
             padding: 20px;
-            background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+            background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef );
         }
 
         .container {
@@ -329,7 +329,8 @@
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-file-alt"></i> Анкета оператора колл-центра</h1>
-            <p>Мы — официальная компания, занимаемся продажей земельных участков и готовых домов.<br>
+            <p>Мы — официальная компания, занимаемся продажей земельных участков и готовых домов.  
+
             Работа оператора — квалификация входящих и холодных лидов и запись на следующий шаг по скрипту. Формат работы: удалённо.</p>
         </div>
 
@@ -395,24 +396,24 @@
                 </div>
             </div>
 
-            <!-- Вопрос 3: Опыт работы в колл-центре (измененный) -->
+            <!-- Вопрос 3: Опыт работы в колл-центре -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">3</div>
-                    <div>Опыт работы в колл-центре</div>
+                    <div>Сколько лет у вас опыта работы в колл-центре?</div>
                 </div>
-                <p class="question-hint">Выберите ваш опыт работы</p>
+                <p class="question-hint">Выберите наиболее подходящий вариант.</p>
                 
                 <div class="input-group">
-                    <label for="callCenterExperience">Ваш опыт (сколько лет) *</label>
+                    <label for="callCenterExperience">Ваш опыт *</label>
                     <select id="callCenterExperience" name="callCenterExperience" required>
-                        <option value="" disabled selected>Выберите количество лет опыта</option>
+                        <option value="" disabled selected>-- Выберите опыт --</option>
+                        <option value="Менее 1 года">Менее 1 года</option>
+                        <option value="1 год">1 год</option>
                         <option value="2 года">2 года</option>
                         <option value="3 года">3 года</option>
                         <option value="4 года">4 года</option>
-                        <option value="более 4 лет">Более 4 лет</option>
-                        <option value="менее 2 лет">Менее 2 лет</option>
-                        <option value="нет опыта">Нет опыта в колл-центре</option>
+                        <option value="5 лет и более">5 лет и более</option>
                     </select>
                 </div>
             </div>
@@ -440,7 +441,7 @@
                 </div>
             </div>
 
-            <!-- Вопрос 5: Самооценка (бывший вопрос 7) -->
+            <!-- Вопрос 5: Самооценка (бывший 7) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">5</div>
@@ -462,7 +463,7 @@
                 </div>
             </div>
 
-            <!-- Вопрос 6: Отношение к 8-часовому дню (бывший вопрос 8) -->
+            <!-- Вопрос 6: Отношение к 8-часовому дню (бывший 8) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">6</div>
@@ -485,44 +486,54 @@
                 </div>
             </div>
 
-            <!-- Вопрос 7: Ожидания по зарплате (бывший вопрос 9) -->
+            <!-- Вопрос 7: Сложности в работе (бывший 9) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">7</div>
-                    <div>Ваши ожидания по заработной плате</div>
+                    <div>Что для вас самое сложное в работе оператора?</div>
                 </div>
-                <p class="question-hint">Укажите сумму, которую вы ожидаете</p>
+                <p class="question-hint">Опишите, что вызывает наибольшие трудности.</p>
                 
                 <div class="input-group">
-                    <label for="salaryExpectations">Ожидания по зарплате *</label>
-                    <textarea id="salaryExpectations" name="salaryExpectations" placeholder="Например: от 40 000 рублей на руки, готов(а) обсуждать..." required></textarea>
+                    <label for="difficulties">Ваш ответ *</label>
+                    <textarea id="difficulties" name="difficulties" placeholder="Например: работа с негативными клиентами, монотонность..." required></textarea>
                 </div>
             </div>
 
-            <!-- Вопрос 8: Срочность работы (новый вопрос) -->
+            <!-- Вопрос 8: Ожидания по ЗП (новый) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">8</div>
+                    <div>Ваши ожидания по заработной плате?</div>
+                </div>
+                <p class="question-hint">Укажите желаемый уровень дохода в месяц (в рублях).</p>
+                
+                <div class="input-group">
+                    <label for="salaryExpectation">Сумма в рублях *</label>
+                    <input type="text" id="salaryExpectation" name="salaryExpectation" placeholder="Например: 50000 рублей" required>
+                </div>
+            </div>
+
+            <!-- Вопрос 9: Срочность поиска работы (новый) -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">9</div>
                     <div>Насколько срочно вам нужна работа?</div>
                 </div>
-                <p class="question-hint">Оцените срочность вашего поиска работы</p>
+                <p class="question-hint">Выберите один из вариантов.</p>
                 
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="urgency" value="Очень срочно, готов(а) начать на этой неделе" required>
-                        <span>Очень срочно, готов(а) начать на этой неделе</span>
+                        <input type="radio" name="urgency" value="Готов приступить в ближайшие дни" required>
+                        <span>Готов(а) приступить в ближайшие дни</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="urgency" value="В ближайшее время (1-2 недели)">
-                        <span>В ближайшее время (1-2 недели)</span>
+                        <input type="radio" name="urgency" value="Нужно отработать 2 недели">
+                        <span>Нужно отработать 2 недели на текущем месте</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="urgency" value="Рассматриваю варианты, без спешки">
-                        <span>Рассматриваю варианты, без спешки</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Только присматриваюсь к рынку">
-                        <span>Только присматриваюсь к рынку</span>
+                        <input type="radio" name="urgency" value="Рассматриваю предложения, но не спешу">
+                        <span>Рассматриваю предложения, но не спешу</span>
                     </label>
                 </div>
             </div>
@@ -564,16 +575,13 @@
                 scaleNumber.appendChild(dot);
                 scaleContainer.appendChild(scaleNumber);
                 
-                // При клике на точку обновляем скрытое поле
                 input.addEventListener('change', function() {
                     document.getElementById('selfRating').value = i;
                 });
                 
-                // Клик по самой точке тоже активирует radio-кнопку
                 dot.addEventListener('click', function() {
                     input.checked = true;
                     document.getElementById('selfRating').value = i;
-                    // Запускаем событие change для radio-кнопки
                     const event = new Event('change');
                     input.dispatchEvent(event);
                 });
@@ -589,36 +597,29 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
             
-            // Сбор данных формы
             const formData = new FormData(this);
             
-            // Обработка чекбоксов (объединение значений в строку)
             const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
             const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
             formData.set('equipment', equipmentValues);
             
-            // Преобразование FormData в обычный объект
             const data = {};
             formData.forEach((value, key) => {
                 data[key] = value;
             });
             
-            // Отправка данных
             try {
-                // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
                 
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data )
                 });
                 
-                // Так как мы используем no-cors, мы не можем проверить статус ответа
-                // Но если запрос выполнен, считаем его успешным
                 showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
                 document.getElementById('applicationForm').reset();
                 document.getElementById('selfRating').value = '';
@@ -638,7 +639,6 @@
             messageDiv.className = type;
             messageDiv.style.display = 'block';
             
-            // Скрыть сообщение через 8 секунд
             setTimeout(() => {
                 messageDiv.style.display = 'none';
             }, 8000);
