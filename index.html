@@ -401,7 +401,7 @@
                 </div>
             </div>
 
-            <!-- Вопрос 3: Опыт работы в колл-центре (лет) -->
+            <!-- Вопрос 3: Опыт работы в колл-центре -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">3</div>
@@ -596,52 +596,53 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
             
-            // Сбор данных формы
-            const formData = new FormData(this);
-            
-            // Обработка чекбоксов (объединение значений в строку)
-            const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
-            const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
-            formData.set('equipment', equipmentValues);
-            
-            // Сбор данных из radio кнопок
-            const experienceYearsRadio = document.querySelector('input[name="experienceYears"]:checked');
-            const coldCallsRadio = document.querySelector('input[name="coldCalls"]:checked');
-            const urgencyRadio = document.querySelector('input[name="urgency"]:checked');
-            const workDayRadio = document.querySelector('input[name="workDay"]:checked');
-            
-            // Создаем объект для отправки
+            // Собираем данные формы вручную с правильными именами
             const data = {
                 fullName: document.getElementById('fullName').value,
                 phone: document.getElementById('phone').value,
                 city: document.getElementById('city').value,
                 timezone: document.getElementById('timezone').value,
-                equipment: equipmentValues,
-                experienceYears: experienceYearsRadio ? experienceYearsRadio.value : '',
-                coldCalls: coldCallsRadio ? coldCallsRadio.value : '',
+                equipment: Array.from(document.querySelectorAll('input[name="equipment"]:checked'))
+                    .map(cb => cb.value)
+                    .join(', '),
+                experienceYears: document.querySelector('input[name="experienceYears"]:checked')?.value || '',
+                coldCalls: document.querySelector('input[name="coldCalls"]:checked')?.value || '',
                 selfRating: document.getElementById('selfRating').value,
                 ratingReason: document.getElementById('ratingReason').value,
-                workDay: workDayRadio ? workDayRadio.value : '',
-                urgency: urgencyRadio ? urgencyRadio.value : '',
+                workDay: document.querySelector('input[name="workDay"]:checked')?.value || '',
+                urgency: document.querySelector('input[name="urgency"]:checked')?.value || '',
                 salaryExpectations: document.getElementById('salaryExpectations').value
             };
             
+            // Проверка обязательных полей
+            if (!data.experienceYears) {
+                showMessage('❌ Пожалуйста, укажите ваш опыт работы в колл-центре', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            if (!data.selfRating) {
+                showMessage('❌ Пожалуйста, оцените себя по шкале от 1 до 10', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
             // Отправка данных
             try {
-                // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
                 
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
                 
-                // Так как мы используем no-cors, мы не можем проверить статус ответа
-                // Но если запрос выполнен, считаем его успешным
+                // Успешная отправка
                 showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
                 document.getElementById('applicationForm').reset();
                 document.getElementById('selfRating').value = '';
