@@ -329,14 +329,8 @@
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-file-alt"></i> Анкета оператора колл-центра</h1>
-            <p> Мы — официальный застройщик коттеджного посёлка в Московской области.<br>
-                Посёлок бизнес-класса, все основные коммуникации подключены.<br>
-                
-                Проект действующий: продаём готовые дома и участки с подрядом.<br>
-                Посёлок застроен, клиенты приезжают на объект и принимают решения на месте.<br>
-                
-                Сейчас мы усиливаем отдел продаж и расширяем команду операторов.<br>
-                Чтобы корректно оценить ваш опыт и формат работы, просим заполнить анкету ниже — после просмотра мы обязательно свяжемся с вами.</p>
+            <p>Мы — официальная компания, занимаемся продажей земельных участков и готовых домов.<br>
+            Работа оператора — квалификация входящих и холодных лидов и запись на следующий шаг по скрипту. Формат работы: удалённо.</p>
         </div>
 
         <div class="disclaimer">
@@ -401,31 +395,25 @@
                 </div>
             </div>
 
-            <!-- Вопрос 3: Опыт работы в колл-центре -->
+            <!-- Вопрос 3: Опыт работы в колл-центре (измененный) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">3</div>
-                    <div>Опыт работы в колл-центре (лет)</div>
+                    <div>Опыт работы в колл-центре</div>
                 </div>
-                <p class="question-hint">Выберите ваш опыт работы в годах</p>
+                <p class="question-hint">Выберите ваш опыт работы</p>
                 
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="experienceYears" value="2 года" required>
-                        <span>2 года</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="experienceYears" value="3 года">
-                        <span>3 года</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="experienceYears" value="4 года">
-                        <span>4 года</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="experienceYears" value="Более 4 лет">
-                        <span>Более 4 лет</span>
-                    </label>
+                <div class="input-group">
+                    <label for="callCenterExperience">Ваш опыт (сколько лет) *</label>
+                    <select id="callCenterExperience" name="callCenterExperience" required>
+                        <option value="" disabled selected>Выберите количество лет опыта</option>
+                        <option value="2 года">2 года</option>
+                        <option value="3 года">3 года</option>
+                        <option value="4 года">4 года</option>
+                        <option value="более 4 лет">Более 4 лет</option>
+                        <option value="менее 2 лет">Менее 2 лет</option>
+                        <option value="нет опыта">Нет опыта в колл-центре</option>
+                    </select>
                 </div>
             </div>
 
@@ -452,30 +440,29 @@
                 </div>
             </div>
 
-            <!-- Вопрос 5: Срочность поиска работы -->
+            <!-- Вопрос 5: Самооценка (бывший вопрос 7) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">5</div>
-                    <div>Насколько срочно вам нужна работа?</div>
+                    <div>Как вы оцениваете свою работу оператором по 10-балльной шкале?</div>
+                </div>
+                <p class="question-hint">И коротко объясните почему.</p>
+                
+                <div class="input-group">
+                    <label>Оценка (от 1 до 10) *</label>
+                    <div class="scale-container">
+                        <!-- Баллы от 1 до 10 будут сгенерированы JS -->
+                    </div>
+                    <input type="hidden" id="selfRating" name="selfRating" required>
                 </div>
                 
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Как можно скорее" required>
-                        <span>Как можно скорее</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="В течение месяца">
-                        <span>В течение месяца</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="urgency" value="Не срочно, рассматриваю варианты">
-                        <span>Не срочно, рассматриваю варианты</span>
-                    </label>
+                <div class="input-group">
+                    <label for="ratingReason">Краткое объяснение вашей оценки *</label>
+                    <textarea id="ratingReason" name="ratingReason" placeholder="Почему вы поставили себе такую оценку?" required></textarea>
                 </div>
             </div>
 
-            <!-- Вопрос 6: Отношение к 8-часовому дню -->
+            <!-- Вопрос 6: Отношение к 8-часовому дню (бывший вопрос 8) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">6</div>
@@ -498,39 +485,45 @@
                 </div>
             </div>
 
-            <!-- Вопрос 7: Самооценка -->
+            <!-- Вопрос 7: Ожидания по зарплате (бывший вопрос 9) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">7</div>
-                    <div>Как вы оцениваете свою работу оператором по 10-балльной шкале?</div>
+                    <div>Ваши ожидания по заработной плате</div>
                 </div>
-                <p class="question-hint">И коротко объясните почему.</p>
+                <p class="question-hint">Укажите сумму, которую вы ожидаете</p>
                 
                 <div class="input-group">
-                    <label>Оценка (от 1 до 10) *</label>
-                    <div class="scale-container">
-                        <!-- Баллы от 1 до 10 будут сгенерированы JS -->
-                    </div>
-                    <input type="hidden" id="selfRating" name="selfRating" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="ratingReason">Краткое объяснение вашей оценки *</label>
-                    <textarea id="ratingReason" name="ratingReason" placeholder="Почему вы поставили себе такую оценку?" required></textarea>
+                    <label for="salaryExpectations">Ожидания по зарплате *</label>
+                    <textarea id="salaryExpectations" name="salaryExpectations" placeholder="Например: от 40 000 рублей на руки, готов(а) обсуждать..." required></textarea>
                 </div>
             </div>
 
-            <!-- Вопрос 8: Ожидания по зарплате -->
+            <!-- Вопрос 8: Срочность работы (новый вопрос) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">8</div>
-                    <div>Ваши ожидания по заработной плате</div>
+                    <div>Насколько срочно вам нужна работа?</div>
                 </div>
-                <p class="question-hint">Укажите желаемый уровень дохода в месяц</p>
+                <p class="question-hint">Оцените срочность вашего поиска работы</p>
                 
-                <div class="input-group">
-                    <label for="salaryExpectations">Ожидания по зарплате (руб./мес) *</label>
-                    <input type="text" id="salaryExpectations" name="salaryExpectations" placeholder="Например: 60 000 - 80 000 рублей" required>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Очень срочно, готов(а) начать на этой неделе" required>
+                        <span>Очень срочно, готов(а) начать на этой неделе</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="В ближайшее время (1-2 недели)">
+                        <span>В ближайшее время (1-2 недели)</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Рассматриваю варианты, без спешки">
+                        <span>Рассматриваю варианты, без спешки</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Только присматриваюсь к рынку">
+                        <span>Только присматриваюсь к рынку</span>
+                    </label>
                 </div>
             </div>
 
@@ -596,53 +589,36 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             submitBtn.disabled = true;
             
-            // Собираем данные формы вручную с правильными именами
-            const data = {
-                fullName: document.getElementById('fullName').value,
-                phone: document.getElementById('phone').value,
-                city: document.getElementById('city').value,
-                timezone: document.getElementById('timezone').value,
-                equipment: Array.from(document.querySelectorAll('input[name="equipment"]:checked'))
-                    .map(cb => cb.value)
-                    .join(', '),
-                experienceYears: document.querySelector('input[name="experienceYears"]:checked')?.value || '',
-                coldCalls: document.querySelector('input[name="coldCalls"]:checked')?.value || '',
-                selfRating: document.getElementById('selfRating').value,
-                ratingReason: document.getElementById('ratingReason').value,
-                workDay: document.querySelector('input[name="workDay"]:checked')?.value || '',
-                urgency: document.querySelector('input[name="urgency"]:checked')?.value || '',
-                salaryExpectations: document.getElementById('salaryExpectations').value
-            };
+            // Сбор данных формы
+            const formData = new FormData(this);
             
-            // Проверка обязательных полей
-            if (!data.experienceYears) {
-                showMessage('❌ Пожалуйста, укажите ваш опыт работы в колл-центре', 'error');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
+            // Обработка чекбоксов (объединение значений в строку)
+            const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
+            const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
+            formData.set('equipment', equipmentValues);
             
-            if (!data.selfRating) {
-                showMessage('❌ Пожалуйста, оцените себя по шкале от 1 до 10', 'error');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
+            // Преобразование FormData в обычный объект
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
             
             // Отправка данных
             try {
+                // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
                 
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
                 
-                // Успешная отправка
+                // Так как мы используем no-cors, мы не можем проверить статус ответа
+                // Но если запрос выполнен, считаем его успешным
                 showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
                 document.getElementById('applicationForm').reset();
                 document.getElementById('selfRating').value = '';
