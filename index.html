@@ -550,106 +550,127 @@
     </div>
 
     <script>
-        // Генерация шкалы оценки от 1 до 10
-        document.addEventListener('DOMContentLoaded', function() {
-            const scaleContainer = document.querySelector('.scale-container');
-            for (let i = 1; i <= 10; i++) {
-                const scaleNumber = document.createElement('div');
-                scaleNumber.className = 'scale-number';
-                
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'rating';
-                input.id = `rating${i}`;
-                input.value = i;
-                
-                const dot = document.createElement('div');
-                dot.className = 'scale-dot';
-                dot.textContent = i;
-                
-                scaleNumber.appendChild(input);
-                scaleNumber.appendChild(dot);
-                scaleContainer.appendChild(scaleNumber);
-                
-                // При клике на точку обновляем скрытое поле
-                input.addEventListener('change', function() {
-                    document.getElementById('selfRating').value = i;
-                });
-                
-                // Клик по самой точке тоже активирует radio-кнопку
-                dot.addEventListener('click', function() {
-                    input.checked = true;
-                    document.getElementById('selfRating').value = i;
-                    // Запускаем событие change для radio-кнопки
-                    const event = new Event('change');
-                    input.dispatchEvent(event);
-                });
-            }
-        });
-
-        // Обработка отправки формы
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+    // Генерация шкалы оценки от 1 до 10
+    document.addEventListener('DOMContentLoaded', function() {
+        const scaleContainer = document.querySelector('.scale-container');
+        for (let i = 1; i <= 10; i++) {
+            const scaleNumber = document.createElement('div');
+            scaleNumber.className = 'scale-number';
             
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-            submitBtn.disabled = true;
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'rating';
+            input.id = `rating${i}`;
+            input.value = i;
             
-            // Сбор данных формы
-            const formData = new FormData(this);
+            const dot = document.createElement('div');
+            dot.className = 'scale-dot';
+            dot.textContent = i;
             
-            // Обработка чекбоксов (объединение значений в строку)
-            const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
-            const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
-            formData.set('equipment', equipmentValues);
+            scaleNumber.appendChild(input);
+            scaleNumber.appendChild(dot);
+            scaleContainer.appendChild(scaleNumber);
             
-            // Преобразование FormData в обычный объект
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
+            // При клике на точку обновляем скрытое поле
+            input.addEventListener('change', function() {
+                document.getElementById('selfRating').value = i;
             });
             
-            // Отправка данных
-            try {
-                // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
-                
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                // Так как мы используем no-cors, мы не можем проверить статус ответа
-                // Но если запрос выполнен, считаем его успешным
-                showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
-                document.getElementById('applicationForm').reset();
-                document.getElementById('selfRating').value = '';
-                
-            } catch (error) {
-                console.error('Ошибка отправки:', error);
-                showMessage('❌ Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами.', 'error');
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
+            // Клик по самой точке тоже активирует radio-кнопку
+            dot.addEventListener('click', function() {
+                input.checked = true;
+                document.getElementById('selfRating').value = i;
+                // Запускаем событие change для radio-кнопки
+                const event = new Event('change');
+                input.dispatchEvent(event);
+            });
+        }
+    });
+
+    // Обработка отправки формы
+    document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+        submitBtn.disabled = true;
+        
+        // Сбор данных формы
+        const formData = new FormData(this);
+        
+        // Обработка чекбоксов (объединение значений в строку)
+        const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
+        const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
+        formData.set('equipment', equipmentValues);
+        
+        // Сбор данных из radio кнопок (experienceYears)
+        const experienceYearsRadio = document.querySelector('input[name="experienceYears"]:checked');
+        const experienceYearsValue = experienceYearsRadio ? experienceYearsRadio.value : '';
+        formData.set('experienceYears', experienceYearsValue);
+        
+        // Сбор данных из radio кнопок (coldCalls)
+        const coldCallsRadio = document.querySelector('input[name="coldCalls"]:checked');
+        const coldCallsValue = coldCallsRadio ? coldCallsRadio.value : '';
+        formData.set('coldCalls', coldCallsValue);
+        
+        // Сбор данных из radio кнопок (urgency)
+        const urgencyRadio = document.querySelector('input[name="urgency"]:checked');
+        const urgencyValue = urgencyRadio ? urgencyRadio.value : '';
+        formData.set('urgency', urgencyValue);
+        
+        // Сбор данных из radio кнопок (workDay)
+        const workDayRadio = document.querySelector('input[name="workDay"]:checked');
+        const workDayValue = workDayRadio ? workDayRadio.value : '';
+        formData.set('workDay', workDayValue);
+        
+        // Преобразование FormData в обычный объект
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
         });
         
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('formMessage');
-            messageDiv.textContent = text;
-            messageDiv.className = type;
-            messageDiv.style.display = 'block';
+        // Отправка данных
+        try {
+            // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
             
-            // Скрыть сообщение через 8 секунд
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 8000);
+            const response = await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            // Так как мы используем no-cors, мы не можем проверить статус ответа
+            // Но если запрос выполнен, считаем его успешным
+            showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
+            document.getElementById('applicationForm').reset();
+            document.getElementById('selfRating').value = '';
+            
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            showMessage('❌ Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
-    </script>
+    });
+    
+    function showMessage(text, type) {
+        const messageDiv = document.getElementById('formMessage');
+        messageDiv.textContent = text;
+        messageDiv.className = type;
+        messageDiv.style.display = 'block';
+        
+        // Скрыть сообщение через 8 секунд
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 8000);
+    }
+</script>
 </body>
 </html>
+
