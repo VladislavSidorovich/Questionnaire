@@ -405,13 +405,27 @@
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">3</div>
-                    <div>Опыт работы в колл-центре</div>
+                    <div>Опыт работы в колл-центре (лет)</div>
                 </div>
-                <p class="question-hint">Укажите общий опыт в направлении кол центра</p>
+                <p class="question-hint">Выберите ваш опыт работы в годах</p>
                 
-                <div class="input-group">
-                    <label for="callCenterExperience">Ваш опыт (в годах/месяцах и подробности) *</label>
-                    <textarea id="callCenterExperience" name="callCenterExperience" placeholder="Например: 2 года работы в колл-центре банка, принимал входящие звонки..." required></textarea>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="experienceYears" value="2 года" required>
+                        <span>2 года</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="experienceYears" value="3 года">
+                        <span>3 года</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="experienceYears" value="4 года">
+                        <span>4 года</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="experienceYears" value="Более 4 лет">
+                        <span>Более 4 лет</span>
+                    </label>
                 </div>
             </div>
 
@@ -438,31 +452,49 @@
                 </div>
             </div>
 
-            <!-- Вопрос 5: Воронка продаж -->
+            <!-- Вопрос 5: Срочность поиска работы -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">5</div>
-                    <div>Опишите воронку на последнем месте работы</div>
+                    <div>Насколько срочно вам нужна работа?</div>
                 </div>
-                <p class="question-hint">Лиды → ваша задача → финальный результат</p>
                 
-                <div class="input-group">
-                    <label for="salesFunnel">Описание процесса *</label>
-                    <textarea id="salesFunnel" name="salesFunnel" placeholder="Опишите, откуда приходили лиды, что вы с ними делали и каков был итоговый результат..." required></textarea>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Как можно скорее" required>
+                        <span>Как можно скорее</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="В течение месяца">
+                        <span>В течение месяца</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Не срочно, рассматриваю варианты">
+                        <span>Не срочно, рассматриваю варианты</span>
+                    </label>
                 </div>
             </div>
 
-            <!-- Вопрос 6: Должностные обязанности -->
+            <!-- Вопрос 6: Отношение к 8-часовому дню -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">6</div>
-                    <div>Опишите ваши ежедневные должностные обязанности на последнем месте работы</div>
+                    <div>Как вы относитесь к 8-часовому рабочему дню в формате звонков?</div>
                 </div>
-                <p class="question-hint">Коротко, по факту</p>
                 
-                <div class="input-group">
-                    <label for="dailyDuties">Обязанности *</label>
-                    <textarea id="dailyDuties" name="dailyDuties" placeholder="Например: прием входящих звонков, консультация клиентов, ведение CRM, отчетность..." required></textarea>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Спокойно, это нормальный рабочий ритм" required>
+                        <span>Спокойно, это нормальный рабочий ритм</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Готов(а), если есть понятная задача и система">
+                        <span>Готов(а), если есть понятная задача и система</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Тяжело выдерживать такой формат">
+                        <span>Тяжело выдерживать такой формат</span>
+                    </label>
                 </div>
             </div>
 
@@ -488,40 +520,17 @@
                 </div>
             </div>
 
-            <!-- Вопрос 8: Отношение к 8-часовому дню -->
+            <!-- Вопрос 8: Ожидания по зарплате -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">8</div>
-                    <div>Как вы относитесь к 8-часовому рабочему дню в формате звонков?</div>
+                    <div>Ваши ожидания по заработной плате</div>
                 </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Спокойно, это нормальный рабочий ритм" required>
-                        <span>Спокойно, это нормальный рабочий ритм</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Готов(а), если есть понятная задача и система">
-                        <span>Готов(а), если есть понятная задача и система</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="workDay" value="Тяжело выдерживать такой формат">
-                        <span>Тяжело выдерживать такой формат</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Вопрос 9: Сложности в работе -->
-            <div class="form-section">
-                <div class="question-title">
-                    <div class="question-number">9</div>
-                    <div>Дополнительный вопрос</div>
-                </div>
-                <p class="question-hint">Что для вас самое сложное в работе оператора?</p>
+                <p class="question-hint">Укажите желаемый уровень дохода в месяц</p>
                 
                 <div class="input-group">
-                    <label for="difficulties">Ваш ответ *</label>
-                    <textarea id="difficulties" name="difficulties" placeholder="Опишите, что вызывает наибольшие трудности..." required></textarea>
+                    <label for="salaryExpectations">Ожидания по зарплате (руб./мес) *</label>
+                    <input type="text" id="salaryExpectations" name="salaryExpectations" placeholder="Например: 60 000 - 80 000 рублей" required>
                 </div>
             </div>
 
@@ -643,5 +652,4 @@
         }
     </script>
 </body>
-
 </html>
