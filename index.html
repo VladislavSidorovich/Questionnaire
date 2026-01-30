@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета оператора | Компания по продаже участков</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e1e5eb;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4a6572);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 i {
+            font-size: 2rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+
+        .disclaimer {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #856404;
+        }
+
+        .disclaimer i {
+            margin-right: 10px;
+            color: #ff9800;
+        }
+
+        .form-section {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .question-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .question-number {
+            background-color: #3498db;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .question-hint {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            padding-left: 38px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .checkbox-label:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-label input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .radio-label input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .scale-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .scale-number {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .scale-number input {
+            display: none;
+        }
+
+        .scale-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .scale-number input:checked + .scale-dot {
+            background-color: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+            transform: scale(1.1);
+        }
+
+        .scale-number:hover .scale-dot {
+            background-color: #d5dbdb;
+        }
+
+        .button-container {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #2980b9, #3498db);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(41, 128, 185, 0.4);
+            background: linear-gradient(to right, #2573a7, #2980b9);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #formMessage {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px auto;
+                border-radius: 10px;
+            }
+            .header, .form-section {
+                padding: 20px;
+            }
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            .scale-container {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-file-alt"></i> Анкета оператора колл-центра</h1>
+            <p>Мы — официальная компания, занимаемся продажей земельных участков и готовых домов.<br>
+            Работа оператора — квалификация входящих и холодных лидов и запись на следующий шаг по скрипту. Формат работы: удалённо.</p>
+        </div>
+
+        <div class="disclaimer">
+            <p><i class="fas fa-exclamation-circle"></i> <strong>Пожалуйста, отвечайте честно.</strong> Некоторые вопросы требуют вдумчивого ответа — это важно для дальнейшего отбора.</p>
+        </div>
+
+        <form id="applicationForm">
+            <!-- Вопрос 1: Контактные данные -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">1</div>
+                    <div>Контактные данные</div>
+                </div>
+                <p class="question-hint">Фамилия, имя, номер телефона, город проживания, часовой пояс</p>
+                
+                <div class="input-group">
+                    <label for="fullName">Фамилия и Имя *</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Иванов Иван" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="phone">Номер телефона *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="city">Город проживания *</label>
+                    <input type="text" id="city" name="city" placeholder="Москва" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="timezone">Часовой пояс (например, МСК+2) *</label>
+                    <input type="text" id="timezone" name="timezone" placeholder="МСК" required>
+                </div>
+            </div>
+
+            <!-- Вопрос 2: Условия для удалённой работы -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">2</div>
+                    <div>Есть ли у вас условия для удалённой работы?</div>
+                </div>
+                <p class="question-hint">Отметьте всё, что есть:</p>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="equipment" value="компьютер / ноутбук">
+                        <span>Компьютер / ноутбук</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="equipment" value="наушники с микрофоном">
+                        <span>Наушники с микрофоном</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="equipment" value="стабильный интернет">
+                        <span>Стабильный интернет</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="equipment" value="тихое рабочее место">
+                        <span>Тихое рабочее место</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Вопрос 3: Опыт работы в колл-центре -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">3</div>
+                    <div>Опыт работы в колл-центре</div>
+                </div>
+                <p class="question-hint">Укажите общий опыт в направлении кол центра</p>
+                
+                <div class="input-group">
+                    <label for="callCenterExperience">Ваш опыт (в годах/месяцах и подробности) *</label>
+                    <textarea id="callCenterExperience" name="callCenterExperience" placeholder="Например: 2 года работы в колл-центре банка, принимал входящие звонки..." required></textarea>
+                </div>
+            </div>
+
+            <!-- Вопрос 4: Опыт холодных звонков -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">4</div>
+                    <div>Был ли у вас опыт работы с холодными звонками?</div>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="coldCalls" value="Да, регулярно" required>
+                        <span>Да, регулярно</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="coldCalls" value="Был частично">
+                        <span>Был частично</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="coldCalls" value="Нет">
+                        <span>Нет</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Вопрос 5: Воронка продаж -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">5</div>
+                    <div>Опишите воронку на последнем месте работы</div>
+                </div>
+                <p class="question-hint">Лиды → ваша задача → финальный результат</p>
+                
+                <div class="input-group">
+                    <label for="salesFunnel">Описание процесса *</label>
+                    <textarea id="salesFunnel" name="salesFunnel" placeholder="Опишите, откуда приходили лиды, что вы с ними делали и каков был итоговый результат..." required></textarea>
+                </div>
+            </div>
+
+            <!-- Вопрос 6: Должностные обязанности -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">6</div>
+                    <div>Опишите ваши ежедневные должностные обязанности на последнем месте работы</div>
+                </div>
+                <p class="question-hint">Коротко, по факту</p>
+                
+                <div class="input-group">
+                    <label for="dailyDuties">Обязанности *</label>
+                    <textarea id="dailyDuties" name="dailyDuties" placeholder="Например: прием входящих звонков, консультация клиентов, ведение CRM, отчетность..." required></textarea>
+                </div>
+            </div>
+
+            <!-- Вопрос 7: Самооценка -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">7</div>
+                    <div>Как вы оцениваете свою работу оператором по 10-балльной шкале?</div>
+                </div>
+                <p class="question-hint">И коротко объясните почему.</p>
+                
+                <div class="input-group">
+                    <label>Оценка (от 1 до 10) *</label>
+                    <div class="scale-container">
+                        <!-- Баллы от 1 до 10 будут сгенерированы JS -->
+                    </div>
+                    <input type="hidden" id="selfRating" name="selfRating" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="ratingReason">Краткое объяснение вашей оценки *</label>
+                    <textarea id="ratingReason" name="ratingReason" placeholder="Почему вы поставили себе такую оценку?" required></textarea>
+                </div>
+            </div>
+
+            <!-- Вопрос 8: Отношение к 8-часовому дню -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">8</div>
+                    <div>Как вы относитесь к 8-часовому рабочему дню в формате звонков?</div>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Спокойно, это нормальный рабочий ритм" required>
+                        <span>Спокойно, это нормальный рабочий ритм</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Готов(а), если есть понятная задача и система">
+                        <span>Готов(а), если есть понятная задача и система</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="workDay" value="Тяжело выдерживать такой формат">
+                        <span>Тяжело выдерживать такой формат</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Вопрос 9: Сложности в работе -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">9</div>
+                    <div>Дополнительный вопрос</div>
+                </div>
+                <p class="question-hint">Что для вас самое сложное в работе оператора?</p>
+                
+                <div class="input-group">
+                    <label for="difficulties">Ваш ответ *</label>
+                    <textarea id="difficulties" name="difficulties" placeholder="Опишите, что вызывает наибольшие трудности..." required></textarea>
+                </div>
+            </div>
+
+            <!-- Кнопка отправки и сообщение -->
+            <div class="button-container">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Отправить анкету
+                </button>
+                
+                <div id="formMessage"></div>
+            </div>
+        </form>
+
+        <div class="footer">
+            <p>© 2023 Анкета для отбора операторов. Все данные конфиденциальны.</p>
+        </div>
+    </div>
+
+    <script>
+        // Генерация шкалы оценки от 1 до 10
+        document.addEventListener('DOMContentLoaded', function() {
+            const scaleContainer = document.querySelector('.scale-container');
+            for (let i = 1; i <= 10; i++) {
+                const scaleNumber = document.createElement('div');
+                scaleNumber.className = 'scale-number';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'rating';
+                input.id = `rating${i}`;
+                input.value = i;
+                
+                const dot = document.createElement('div');
+                dot.className = 'scale-dot';
+                dot.textContent = i;
+                
+                scaleNumber.appendChild(input);
+                scaleNumber.appendChild(dot);
+                scaleContainer.appendChild(scaleNumber);
+                
+                // При клике на точку обновляем скрытое поле
+                input.addEventListener('change', function() {
+                    document.getElementById('selfRating').value = i;
+                });
+                
+                // Клик по самой точке тоже активирует radio-кнопку
+                dot.addEventListener('click', function() {
+                    input.checked = true;
+                    document.getElementById('selfRating').value = i;
+                    // Запускаем событие change для radio-кнопки
+                    const event = new Event('change');
+                    input.dispatchEvent(event);
+                });
+            }
+        });
+
+        // Обработка отправки формы
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            submitBtn.disabled = true;
+            
+            // Сбор данных формы
+            const formData = new FormData(this);
+            
+            // Обработка чекбоксов (объединение значений в строку)
+            const equipmentCheckboxes = document.querySelectorAll('input[name="equipment"]:checked');
+            const equipmentValues = Array.from(equipmentCheckboxes).map(cb => cb.value).join(', ');
+            formData.set('equipment', equipmentValues);
+            
+            // Преобразование FormData в обычный объект
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Отправка данных
+            try {
+                // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
+                
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Так как мы используем no-cors, мы не можем проверить статус ответа
+                // Но если запрос выполнен, считаем его успешным
+                showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
+                document.getElementById('applicationForm').reset();
+                document.getElementById('selfRating').value = '';
+                
+            } catch (error) {
+                console.error('Ошибка отправки:', error);
+                showMessage('❌ Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами.', 'error');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.textContent = text;
+            messageDiv.className = type;
+            messageDiv.style.display = 'block';
+            
+            // Скрыть сообщение через 8 секунд
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 8000);
+        }
+    </script>
+</body>
+</html>
