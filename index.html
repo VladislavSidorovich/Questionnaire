@@ -395,17 +395,30 @@
                 </div>
             </div>
 
-            <!-- Вопрос 3: Опыт работы в колл-центре -->
+            <!-- Вопрос 3: Опыт работы в колл-центре (ИЗМЕНЕНО) -->
             <div class="form-section">
                 <div class="question-title">
                     <div class="question-number">3</div>
-                    <div>Опыт работы в колл-центре</div>
+                    <div>Опыт работы в колл-центре (лет)</div>
                 </div>
-                <p class="question-hint">Укажите общий опыт в направлении кол центра</p>
+                <p class="question-hint">Выберите ваш опыт работы в годах</p>
                 
                 <div class="input-group">
-                    <label for="callCenterExperience">Ваш опыт (в годах/месяцах и подробности) *</label>
-                    <textarea id="callCenterExperience" name="callCenterExperience" placeholder="Например: 2 года работы в колл-центре банка, принимал входящие звонки..." required></textarea>
+                    <label for="callCenterExperience">Ваш опыт работы в колл-центре *</label>
+                    <select id="callCenterExperience" name="callCenterExperience" required>
+                        <option value="">Выберите опыт</option>
+                        <option value="менее 1 года">менее 1 года</option>
+                        <option value="1 год">1 год</option>
+                        <option value="2 года">2 года</option>
+                        <option value="3 года">3 года</option>
+                        <option value="4 года">4 года</option>
+                        <option value="5 лет">5 лет</option>
+                        <option value="6 лет">6 лет</option>
+                        <option value="7 лет">7 лет</option>
+                        <option value="8 лет">8 лет</option>
+                        <option value="9 лет">9 лет</option>
+                        <option value="10 лет и более">10 лет и более</option>
+                    </select>
                 </div>
             </div>
 
@@ -519,6 +532,59 @@
                 </div>
             </div>
 
+            <!-- НОВЫЙ Вопрос 10: Срочность поиска работы -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">10</div>
+                    <div>Срочность поиска работы</div>
+                </div>
+                <p class="question-hint">Как скоро вы готовы приступить к работе?</p>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Ищу работу срочно, готов(а) начать сразу" required>
+                        <span>Ищу работу срочно, готов(а) начать сразу</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Рассматриваю предложения, могу начать через 1-2 недели">
+                        <span>Рассматриваю предложения, могу начать через 1-2 недели</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Ищу интересные предложения, не спеша">
+                        <span>Ищу интересные предложения, не спеша</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="Только присматриваюсь к вариантам">
+                        <span>Только присматриваюсь к вариантам</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- НОВЫЙ Вопрос 11: Ожидания по заработной плате -->
+            <div class="form-section">
+                <div class="question-title">
+                    <div class="question-number">11</div>
+                    <div>Ожидания по заработной плате</div>
+                </div>
+                <p class="question-hint">Укажите ожидаемый уровень дохода (в рублях)</p>
+                
+                <div class="input-group">
+                    <label for="salaryExpectations">Ожидаемая заработная плата *</label>
+                    <select id="salaryExpectations" name="salaryExpectations" required>
+                        <option value="">Выберите вариант</option>
+                        <option value="до 40 000 руб.">до 40 000 руб.</option>
+                        <option value="40 000 - 50 000 руб.">40 000 - 50 000 руб.</option>
+                        <option value="50 000 - 60 000 руб.">50 000 - 60 000 руб.</option>
+                        <option value="60 000 - 70 000 руб.">60 000 - 70 000 руб.</option>
+                        <option value="70 000 - 80 000 руб.">70 000 - 80 000 руб.</option>
+                        <option value="80 000 - 90 000 руб.">80 000 - 90 000 руб.</option>
+                        <option value="90 000 - 100 000 руб.">90 000 - 100 000 руб.</option>
+                        <option value="100 000 руб. и выше">100 000 руб. и выше</option>
+                        <option value="Рассмотрю любое предложение">Рассмотрю любое предложение</option>
+                    </select>
+                </div>
+            </div>
+
             <!-- Кнопка отправки и сообщение -->
             <div class="button-container">
                 <button type="submit" class="submit-btn" id="submitBtn">
@@ -598,19 +664,17 @@
             // Отправка данных
             try {
                 // ВАЖНО: Замените этот URL на URL вашего веб-приложения Google Apps Script
-             const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbw--LNi5txaDvUM2J3uf5tsxSi1-G6V6lIBBsjSJS7j0X4dSXOyWlSeUOf2IS-AE1oHCQ/exec';
                 
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', // Режим no-cors для работы с Google Apps Script
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
                 
-                // Так как мы используем no-cors, мы не можем проверить статус ответа
-                // Но если запрос выполнен, считаем его успешным
                 showMessage('✅ Анкета успешно отправлена! Спасибо за ваше время.', 'success');
                 document.getElementById('applicationForm').reset();
                 document.getElementById('selfRating').value = '';
@@ -630,7 +694,6 @@
             messageDiv.className = type;
             messageDiv.style.display = 'block';
             
-            // Скрыть сообщение через 8 секунд
             setTimeout(() => {
                 messageDiv.style.display = 'none';
             }, 8000);
@@ -638,4 +701,3 @@
     </script>
 </body>
 </html>
-
